@@ -1,4 +1,4 @@
-package com.afkl.cases.df;
+package com.afkl.cases.df.model;
 
 /**
  * Created by pvaughan on 02/12/2016.
