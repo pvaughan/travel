@@ -1,7 +1,7 @@
 package com.afkl.cases.df.common.http;
 
 import com.afkl.cases.df.common.exception.HttpException;
-import com.afkl.cases.df.model.JsonRequest;
+import com.afkl.cases.df.common.http.model.JsonRequest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

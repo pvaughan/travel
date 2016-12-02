@@ -3,7 +3,7 @@ package com.afkl.cases.df.service;
 import com.afkl.cases.df.common.exception.HttpException;
 import com.afkl.cases.df.common.http.PoolableHttpJsonClient;
 import com.afkl.cases.df.model.AirportModel;
-import com.afkl.cases.df.model.JsonRequest;
+import com.afkl.cases.df.common.http.model.JsonRequest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

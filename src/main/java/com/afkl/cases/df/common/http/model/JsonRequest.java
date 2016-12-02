@@ -1,4 +1,4 @@
-package com.afkl.cases.df.model;
+package com.afkl.cases.df.common.http.model;
 
 import java.util.HashMap;
 import java.util.Map;
