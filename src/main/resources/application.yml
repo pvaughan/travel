@@ -4,6 +4,9 @@ server:
 
 travel-api:
     base-url: http://localhost:8080
+    client-id: travel-api-client
+    secret: psw
+    auth: /oauth/token?grant_type=client_credentials
     listAirports: /airports
     airport: /airports/%s
     destinations: /fares/%s/%s

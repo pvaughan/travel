@@ -1,10 +1,10 @@
 package com.afkl.cases.df.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 /**
  * Created by pvaughan on 02/12/2016.
  */
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-
 @JsonAutoDetect
 public class AirportModel {
 
