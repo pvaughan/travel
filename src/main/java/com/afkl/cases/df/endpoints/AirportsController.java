@@ -8,6 +8,7 @@ import com.afkl.cases.df.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -31,8 +32,13 @@ public class AirportsController {
     }
 
     @RequestMapping("/airports")
-    public AirportsResult getAirports() {
-        return this.airportsService.getAirPorts();
+    public AirportsResult getAirports(@RequestParam(value = "page", defaultValue = "1") String page) {
+        return this.airportsService.getAirPorts(page);
+    }
+
+    @RequestMapping("/airports/search/{q}")
+    public AirportsResult searchAirport(@PathVariable("q") String q) {
+        return this.airportsService.searchAirport(q);
     }
 
     @RequestMapping("/airport/{code}")

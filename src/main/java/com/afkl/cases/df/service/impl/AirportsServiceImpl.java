@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,14 +35,14 @@ public class AirportsServiceImpl extends AbstractDestinationService implements A
     }
 
     @Override
-    public AirportModel getAirPort(String code){
+    public AirportModel getAirPort(String code) {
 
         Map<String, String> params = new HashMap<String, String>();
 
         try {
             return this.getHttpJsonClient().doGet(
                     JsonRequest.newBuilder()
-                            .url(this.getServerBaseAddress() + String.format(AIRPORT_URL,code))
+                            .url(this.getServerBaseAddress() + String.format(AIRPORT_URL, code))
                             .headers(this.getSecurityHeader())
                             .params(params)
                             .build(),
@@ -54,9 +55,26 @@ public class AirportsServiceImpl extends AbstractDestinationService implements A
     }
 
     @Override
-    public AirportsResult getAirPorts(){
+    public AirportsResult getAirPorts(String page) {
 
+        return retreiveAirports(null, page);
+    }
+
+    @Override
+    public AirportsResult searchAirport(String q) {
+        return retreiveAirports(q, null);
+    }
+
+    private AirportsResult retreiveAirports(String term, String page) {
         Map<String, String> params = new HashMap<String, String>();
+
+        if (!StringUtils.isEmpty(term)) {
+            params.put("term", term);
+        }
+
+        if (!StringUtils.isEmpty(page)) {
+            params.put("page", page);
+        }
 
         try {
             return this.getHttpJsonClient().doGet(

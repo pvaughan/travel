@@ -9,5 +9,5 @@ travel-api:
     auth: /oauth/token?grant_type=client_credentials
     listAirports: /airports
     airport: /airports/%s
-    destinations: /fares/%s/%s
+    fareOffers: /fares/%s/%s
 

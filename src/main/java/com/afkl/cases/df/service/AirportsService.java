@@ -10,5 +10,7 @@ public interface AirportsService {
 
     AirportModel getAirPort(String code);
 
-    AirportsResult getAirPorts();
+    AirportsResult getAirPorts(String page);
+
+    AirportsResult searchAirport(String q);
 }
