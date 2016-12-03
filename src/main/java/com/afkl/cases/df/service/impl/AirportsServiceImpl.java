@@ -4,6 +4,7 @@ import com.afkl.cases.df.common.exception.HttpException;
 import com.afkl.cases.df.common.http.PoolableHttpJsonClient;
 import com.afkl.cases.df.model.AirportModel;
 import com.afkl.cases.df.common.http.model.JsonRequest;
+import com.afkl.cases.df.model.AirportsResult;
 import com.afkl.cases.df.service.AbstractDestinationService;
 import com.afkl.cases.df.service.AirportsService;
 import com.afkl.cases.df.service.AuthService;
@@ -24,20 +25,23 @@ public class AirportsServiceImpl extends AbstractDestinationService implements A
     @Value("${travel-api.airport}")
     private String AIRPORT_URL;
 
+    @Value("${travel-api.listAirports}")
+    private String AIRPORTS_URL;
+
     @Autowired
     public AirportsServiceImpl(PoolableHttpJsonClient poolableHttpClient, AuthService authService) {
         super(poolableHttpClient, authService);
     }
 
     @Override
-    public AirportModel getAirPort(){
+    public AirportModel getAirPort(String code){
 
         Map<String, String> params = new HashMap<String, String>();
 
         try {
             return this.getHttpJsonClient().doGet(
                     JsonRequest.newBuilder()
-                            .url(this.getServerBaseAddress() + String.format(AIRPORT_URL,"AMS"))
+                            .url(this.getServerBaseAddress() + String.format(AIRPORT_URL,code))
                             .headers(this.getSecurityHeader())
                             .params(params)
                             .build(),
@@ -49,4 +53,27 @@ public class AirportsServiceImpl extends AbstractDestinationService implements A
         }
     }
 
+    @Override
+    public AirportsResult getAirPorts(){
+
+        Map<String, String> params = new HashMap<String, String>();
+
+        try {
+            return this.getHttpJsonClient().doGet(
+                    JsonRequest.newBuilder()
+                            .url(this.getServerBaseAddress() + this.getAirportsUrl())
+                            .headers(this.getSecurityHeader())
+                            .params(params)
+                            .build(),
+                    new TypeReference<AirportsResult>() {
+                    }
+            );
+        } catch (HttpException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getAirportsUrl() {
+        return AIRPORTS_URL;
+    }
 }

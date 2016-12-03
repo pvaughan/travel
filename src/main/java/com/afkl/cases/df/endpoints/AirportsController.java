@@ -1,12 +1,13 @@
 package com.afkl.cases.df.endpoints;
 
 import com.afkl.cases.df.model.AirportModel;
+import com.afkl.cases.df.model.AirportsResult;
 import com.afkl.cases.df.model.AuthToken;
 import com.afkl.cases.df.service.AirportsService;
 import com.afkl.cases.df.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -29,9 +30,14 @@ public class AirportsController {
         this.authService = authService;
     }
 
-    @RequestMapping("/greeting")
-    public AirportModel greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return this.airportsService.getAirPort();
+    @RequestMapping("/airports")
+    public AirportsResult getAirports() {
+        return this.airportsService.getAirPorts();
+    }
+
+    @RequestMapping("/airport/{code}")
+    public AirportModel greeting(@PathVariable("code") String code) {
+        return this.airportsService.getAirPort(code);
     }
 
     @RequestMapping("/auth")
