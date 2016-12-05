@@ -11,3 +11,6 @@ travel-api:
     airport: /airports/%s
     fareOffers: /fares/%s/%s
 
+poolable-http:
+    pool-size: 100
+    max-per-route: 50

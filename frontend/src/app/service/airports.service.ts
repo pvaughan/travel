@@ -9,12 +9,19 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AirportsService {
 
-    private DOSIER__LIST_URL: string = 'http://localhost:9000/airports';
+    private AIRPORTS__LIST_URL: string = 'http://localhost:9000/airports';
+    private SEARCH__LIST_URL: string = 'http://localhost:9000/airports/search/';
 
     constructor(private http: Http) { }
 
     public getAirports(): Observable<AirPortModel[]> {
-        return this.http.get(this.DOSIER__LIST_URL)
+        return this.http.get(this.AIRPORTS__LIST_URL)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    public getAirportsByName(name: string): Observable<AirPortModel[]> {
+        return this.http.get(this.SEARCH__LIST_URL + name)
             .map(this.extractData)
             .catch(this.handleError);
     }

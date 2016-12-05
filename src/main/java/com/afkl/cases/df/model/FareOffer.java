@@ -15,6 +15,11 @@ public class FareOffer {
     private String origin;
     private String destination;
 
+
+    private AirportModel originInfo;
+    private AirportModel destinationInfo;
+
+
     public BigDecimal getAmount() {
         return amount;
     }
@@ -45,5 +50,21 @@ public class FareOffer {
 
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+
+    public AirportModel getOriginInfo() {
+        return originInfo;
+    }
+
+    public void setOriginInfo(AirportModel originInfo) {
+        this.originInfo = originInfo;
+    }
+
+    public AirportModel getDestinationInfo() {
+        return destinationInfo;
+    }
+
+    public void setDestinationInfo(AirportModel destinationInfo) {
+        this.destinationInfo = destinationInfo;
     }
 }

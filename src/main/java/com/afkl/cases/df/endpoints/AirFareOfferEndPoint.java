@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * Created by pvaughan on 03/12/2016.
  */
@@ -22,7 +24,7 @@ public class AirFareOfferEndPoint {
     }
 
     @RequestMapping("/fareOffer/{origenCode}/{destinationCode}")
-    public FareOffer greeting(@PathVariable("origenCode") String origenCode, @PathVariable("destinationCode") String destinationCode) {
+    public FareOffer greeting(@PathVariable("origenCode") String origenCode, @PathVariable("destinationCode") String destinationCode) throws ExecutionException, InterruptedException {
         return this.fareOfferService.getFareOffers(origenCode,destinationCode);
     }
 

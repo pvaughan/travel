@@ -1,3 +1,32 @@
 h4 {
-	color: lightseagreen;
+	color: #005b82;
+}
+
+.searchTable{
+    width: 80%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+	max-height: 400px;
+	overflow: scroll;
+}
+
+.input-box{
+	height: 150px;
+}
+
+.selectionRow {
+	min-height: 160px;
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.banner{
+	margin: 0;
+	width:100%;
 }

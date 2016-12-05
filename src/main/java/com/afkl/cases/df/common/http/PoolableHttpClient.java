@@ -12,6 +12,7 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -27,21 +28,21 @@ public class PoolableHttpClient extends AbstractServerHttpClient {
 
     private HttpClient httpClient;
 
-    public PoolableHttpClient() {
-        poolingHttpClientConnectionManager = null;
-        HttpClientBuilder hcBuilder = HttpClientBuilder.create().setConnectionManager(new BasicHttpClientConnectionManager());
-        LOGGER.info("new single");
-        httpClient = hcBuilder.build();
-    }
+    @Value("${poolable-http.pool-size}")
+    private int poolSize = 100;
 
-    public PoolableHttpClient(int poolSize, int maxPerRoute) {
+    @Value("${poolable-http.max-per-route}")
+    private int maxPerRoute = 50;
+
+
+    public PoolableHttpClient() {
         this.poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager();
         poolingHttpClientConnectionManager.setMaxTotal(poolSize);
         poolingHttpClientConnectionManager.setDefaultMaxPerRoute(maxPerRoute);
         HttpClientBuilder hcBuilder = HttpClientBuilder.create().setConnectionManager(poolingHttpClientConnectionManager);
-        LOGGER.info("new PoolableHttpClient");
         httpClient = hcBuilder.build();
     }
+
 
     public String doRequest(RequestBuilder requestBuilder) throws HttpException {
         HttpResponse response = null;
