@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-home"></i> Airports</h3>
+    </div>
+    <div class="panel-body">
+        <h4>KLM Airports</h4>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let airport of airPorts | async">
+                    <td> {{airport.code}}</td>
+                    <td> {{airport.name}}</td>
+                    <td> {{airport.description}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

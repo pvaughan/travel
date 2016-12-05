@@ -28,8 +28,13 @@
 /Servers
 
 # Frontend files
-/**/node_modules
-/**/.gulp-cache
-/**/jspm_packages
-/**/dist
-/devnet-core-ui/src/client/public
+env.json
+.idea/
+.vscode
+/frontend/node_modules
+/frontend/bower_components
+/frontend/build
+/frontend/report
+/frontend/typings
+/frontend/src/tmp
+/frontend/src/assets/styles/*.css
