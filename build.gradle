@@ -27,7 +27,7 @@ gulp_default.dependsOn 'npmInstall'
 gulp_default.dependsOn 'installGulp'
 
 // processResources is a Java task. Run the gulpfile.js before this task using the 'default' task in the gulpfile.js
-//processResources.dependsOn gulp_default
+processResources.dependsOn gulp_default
 
 jar {
     baseName = 'destination-finder-client'
