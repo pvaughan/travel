@@ -1,10 +1,13 @@
 package com.afkl.cases.df.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import java.util.Date;
 
 /**
  * Created by pvaughan on 06/12/2016.
  */
+@JsonAutoDetect
 public class StatisticModel {
 
     private final Date timeStamp;

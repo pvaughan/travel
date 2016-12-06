@@ -16,10 +16,10 @@ export class StatisticsComponent {
             {
                 id: 'chart-1',
                 data: {
-                    type: 'bar',
-                    series: [{
-                        values: [2, 3, 4, 5, 3, 3, 2]
-                    }]
+                    type: 'gauge',
+                    series: [
+                        { values: [87] }
+                    ]
                 },
                 height: 300
             }

@@ -1,6 +1,7 @@
 package com.afkl.cases.df.endpoints;
 
 import com.afkl.cases.df.model.StatisticModel;
+import com.afkl.cases.df.model.StatisticReport;
 import com.afkl.cases.df.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +21,10 @@ public class StatisticsEndpoint {
     @RequestMapping("/getStatistics")
     public List<StatisticModel> getStatistics(){
         return statisticService.getStatisticModels();
+    }
+
+    @RequestMapping("/getStatisticsReport")
+    public StatisticReport getStatisticsReport(){
+        return statisticService.getStatisticReport();
     }
 }

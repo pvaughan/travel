@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HomeComponent } from './index';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { SearchBoxComponent } from './component/searchbox.component';
 
 @NgModule({
     imports: [
@@ -10,11 +10,12 @@ import { FormsModule } from '@angular/forms';
         FormsModule
     ],
     declarations: [
-        HomeComponent
+        HomeComponent, SearchBoxComponent
     ],
     exports: [
-        HomeComponent
+        HomeComponent, SearchBoxComponent
     ]
 })
 export class HomeModule {
 }
+

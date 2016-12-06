@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AirportsService } from '../service/airports.service';
 import { AirFaresService } from '../service/airfares.service';
 import { AirPortModel } from '../service/airport.model';
 import { AirFareModel } from '../service/airfare.model';
@@ -9,28 +8,23 @@ import { Observable } from 'rxjs/Rx';
     moduleId: module.id,
     selector: 'as-home',
     templateUrl: 'home.html',
-    providers: [AirportsService, AirFaresService],
+    providers: [AirFaresService],
     styleUrls: [
         'home.css'
     ]
 })
 export class HomeComponent {
 
-    airPorts: Observable<AirPortModel[]>;
-    airFares: Observable<AirFareModel[]>;
-    origen: AirPortModel;
-    destination: AirPortModel;
-    isLoading: boolean;
+    private airFares: Observable<AirFareModel[]>;
+    private origen: AirPortModel;
+    private destination: AirPortModel;
+    private isLoading: boolean;
+   
+    private origenSelected: boolean;
+    private destinationSelected: boolean;
+    private  origenDestination: boolean;
 
-    origenAiportSearch: string;
-    origenSelected: boolean;
-    destinationSelected: boolean;
-
-    counter: number = 0;
-
-    origenDestination: boolean;
-
-    constructor(private _airportsService: AirportsService, private _airFaresService: AirFaresService) {
+    constructor(private _airFaresService: AirFaresService) {
     }
 
     ngOnInit() {
@@ -42,24 +36,10 @@ export class HomeComponent {
         this.origenDestination = true;
     }
 
-    getAirports() {
-        if (this.origenAiportSearch.length > 3) {
-            this.airPorts = this._airportsService.getAirportsByName(this.origenAiportSearch);
-        }
-    }
-
-    reSelectOrigen() {
-        this.origenSelected = false;
-        this.origenAiportSearch = '';
-        this.airPorts = null;
-    }
-
     selectOrigen(origen: AirPortModel) {
         this.origen = origen;
         this.origenSelected = true;
         this.isLoading = this.origenDestination = false;
-        this.airPorts = null;
-        this.origenAiportSearch = '';
         this.airFares = null;
     }
 
