@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { CompletedFilterPipe, TodolistComponent } from './index';
+import { StatisticsComponent } from './index';
+import { ChartModule } from 'angular2-highcharts';
 
 @NgModule({
     declarations: [
-        CompletedFilterPipe,
-        TodolistComponent
+        StatisticsComponent
     ],
     imports: [
         FormsModule,
-        BrowserModule
+        BrowserModule,
+        ChartModule
     ],
     exports: [
-        CompletedFilterPipe,
-        TodolistComponent
+        StatisticsComponent
     ]
 })
-export class TodolistModule {
+export class StatisticsModule {
 }

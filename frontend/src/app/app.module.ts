@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { appRoutingProviders, routing } from './app.routing';
 import { NavbarModule } from './shared';
 import { HomeModule } from './home/home.module';
-import { TodolistModule } from './todolist/todolist.module';
+import { StatisticsModule } from './statistics/statistics.module';
 
 @NgModule({
     declarations: [
@@ -23,7 +23,7 @@ import { TodolistModule } from './todolist/todolist.module';
         HttpModule,
         NavbarModule,
         HomeModule,
-        TodolistModule,
+        StatisticsModule,
         routing
     ],
     providers: [APP_PROVIDERS, appRoutingProviders],
