@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Chart } from '../service/chart.model';
 
 @Component({
     moduleId: module.id,
@@ -6,19 +7,25 @@ import { Component } from '@angular/core';
     templateUrl: 'statistics.html'
 })
 export class StatisticsComponent {
- 
-    public options: Object;
 
+    public charts: Chart[];
 
     constructor() {
 
-
-        this.options = {
-            title : { text : 'simple chart' },
-            series: [{
-                data: [29.9, 71.5, 106.4, 129.2],
-            }]
-        };
+        let chart = new Chart(
+            {
+                id: 'chart-1',
+                data: {
+                    type: 'bar',
+                    series: [{
+                        values: [2, 3, 4, 5, 3, 3, 2]
+                    }]
+                },
+                height: 300
+            }
+        );
+        this.charts = [];
+        this.charts.push(chart);
     }
 
 

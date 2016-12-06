@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { StatisticsComponent } from './index';
-import { ChartModule } from 'angular2-highcharts';
+import { Zingchart } from './component/zingchart.component';
 
 @NgModule({
     declarations: [
-        StatisticsComponent
+        StatisticsComponent, Zingchart
     ],
     imports: [
         FormsModule,
-        BrowserModule,
-        ChartModule
+        BrowserModule
+
     ],
     exports: [
         StatisticsComponent

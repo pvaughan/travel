@@ -11,9 +11,7 @@
     // map tells the System loader where to look for things
     var map = {
         'app': 'src/tmp/app',
-        'test': 'src/tmp/test',
-        'angular2-highcharts':        'https://cdn.rawgit.com/gevgeny/angular2-highcharts/v0.3.0/dist',
-        'highcharts/highstock.src':   'https://cdn.rawgit.com/highcharts/highcharts-dist/v4.2.1/highstock.js'
+        'test': 'src/tmp/test'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
@@ -26,10 +24,6 @@
         },
         'rxjs': {
             defaultExtension: 'js'
-        },
-        'angular2-highcharts': {
-            main: './index.js',
-            defaultExtension: 'js'
         }
     };
 
@@ -37,8 +31,7 @@
     var npmPackages = [
         '@angular',
         'rxjs',
-        'lodash',
-        'highcharts'
+        'lodash'
 
     ];
 
@@ -48,8 +41,7 @@
         'app/shared',
 
         // 3rd party barrels
-        'lodash',
-        'angular2-highcharts'
+        'lodash'
 
     ];
 
