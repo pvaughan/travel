@@ -1,21 +1,22 @@
 package com.afkl.cases.df.common.http;
 
 import com.afkl.cases.df.common.exception.HttpException;
-import org.apache.http.HttpHost;
+import com.afkl.cases.df.model.StatisticModel;
+import com.afkl.cases.df.service.StatisticService;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
-import org.apache.http.impl.conn.DefaultProxyRoutePlanner;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by pvaughan on 02/12/2016.
@@ -34,8 +35,12 @@ public class PoolableHttpClient extends AbstractServerHttpClient {
     @Value("${poolable-http.max-per-route}")
     private int maxPerRoute = 50;
 
+    private final StatisticService statisticService;
 
-    public PoolableHttpClient() {
+
+    @Autowired
+    public PoolableHttpClient(StatisticService statisticService) {
+        this.statisticService = statisticService;
         this.poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager();
         poolingHttpClientConnectionManager.setMaxTotal(poolSize);
         poolingHttpClientConnectionManager.setDefaultMaxPerRoute(maxPerRoute);
@@ -48,7 +53,15 @@ public class PoolableHttpClient extends AbstractServerHttpClient {
         HttpResponse response = null;
         String responseContent = null;
         try {
+            long startTime = System.currentTimeMillis();
             response = httpClient.execute(requestBuilder.build());
+
+            statisticService.addNewStatistic(new StatisticModel(
+                    new Date(),
+                    System.currentTimeMillis() - startTime,
+                    response.getStatusLine().getStatusCode())
+            );
+
             if (response.getEntity() != null) {
                 responseContent = EntityUtils.toString(response.getEntity());
             }
