@@ -1,0 +1,29 @@
+<style>
+    .badge:hover {
+        background-color: orangered;
+        cursor: pointer;
+    }
+    .list-options {
+        vertical-align: middle;
+        display: inline-block;
+    }
+    [hidden] {
+        display: none;
+    }
+    .ng-valid[required] {
+      border-left: 5px solid #42A948; /* green */
+    }
+    .ng-invalid:not(form) {
+      border-left: 5px solid orange; /* orange */
+    }
+</style>
+<div class="container" style="margin-top: 100px;">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-list"></i> Statistics &nbsp;<span class="badge"></span></h3>
+  </div>
+  <div class="panel-body">
+      <as-zing-chart *ngFor="let chart of charts" [chart]="chart"></as-zing-chart>
+  </div>
+</div>
+</div>
