@@ -11,4 +11,16 @@ to list all tasks:
 
 To view the assignment (after starting the application) go to:
 
-[http://localhost:9000/travel/index.html](http://localhost:9000/travel/index.html)
+[http://localhost:9000/flights](http://localhost:9000/flights)
+
+Run and build the front end separately:
+
+first install dependencies
+
+`./frontend/npm i`
+
+then build and run the front end application using gulp
+
+`./frontend/gulp serve-dev`
+
+[http://localhost:3000/flights](http://localhost:3000/flights)
