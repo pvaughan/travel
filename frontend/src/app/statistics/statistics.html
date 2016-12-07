@@ -1,29 +1,26 @@
-<style>
-    .badge:hover {
-        background-color: orangered;
-        cursor: pointer;
-    }
-    .list-options {
-        vertical-align: middle;
-        display: inline-block;
-    }
-    [hidden] {
-        display: none;
-    }
-    .ng-valid[required] {
-      border-left: 5px solid #42A948; /* green */
-    }
-    .ng-invalid:not(form) {
-      border-left: 5px solid orange; /* orange */
-    }
-</style>
 <div class="container" style="margin-top: 100px;">
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-list"></i> Statistics &nbsp;<span class="badge"></span></h3>
-  </div>
-  <div class="panel-body">
-      <as-zing-chart *ngFor="let chart of charts" [chart]="chart"></as-zing-chart>
-  </div>
-</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart"></i> Response times &nbsp;<span class="badge"></span></h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div *ngFor="let chart of charts" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <as-zing-chart [chart]="chart"></as-zing-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart"></i> Number of requests &nbsp;<span class="badge"></span></h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div *ngFor="let chart of charts2" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <as-zing-chart [chart]="chart"></as-zing-chart>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

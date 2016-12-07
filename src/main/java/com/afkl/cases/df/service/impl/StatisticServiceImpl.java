@@ -57,8 +57,8 @@ public class StatisticServiceImpl implements com.afkl.cases.df.service.Statistic
 
 
     private void calculate(){
-        this.minResponseTime = Collections.max(statisticModels, new compRequestCompletionTime()).getRequestCompletionTime();
-        this.maxResponseTime = Collections.min(statisticModels, new compRequestCompletionTime()).getRequestCompletionTime();
+        this.minResponseTime = Collections.min(statisticModels, new compRequestCompletionTime()).getRequestCompletionTime();
+        this.maxResponseTime = Collections.max(statisticModels, new compRequestCompletionTime()).getRequestCompletionTime();
         this.avgResponseTime = this.calculateAverage(this.statisticModels);
     }
 
@@ -76,7 +76,7 @@ public class StatisticServiceImpl implements com.afkl.cases.df.service.Statistic
 
     public class compRequestCompletionTime implements Comparator<StatisticModel> {
         public int compare(StatisticModel a, StatisticModel b) {
-            if (a.getRequestCompletionTime() > b.getRequestCompletionTime())
+            if (a.getRequestCompletionTime() < b.getRequestCompletionTime())
                 return -1; // highest value first
             if (a.getRequestCompletionTime() == b.getRequestCompletionTime())
                 return 0;
