@@ -2,6 +2,7 @@ package com.afkl.cases.df.service.impl;
 
 import com.afkl.cases.df.model.StatisticModel;
 import com.afkl.cases.df.model.StatisticReport;
+import org.springframework.cglib.core.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,8 +35,12 @@ public class StatisticServiceImpl implements com.afkl.cases.df.service.Statistic
 
     @Override
     public StatisticReport getStatisticReport(){
-        this.calculate();
         final StatisticReport statisticReport = new StatisticReport();
+        if(org.springframework.util.CollectionUtils.isEmpty(statisticModels)){
+            return statisticReport;
+        }
+
+        this.calculate();
         statisticReport.setAvgResponseTime(this.avgResponseTime);
         statisticReport.setMaxResponseTime(this.maxResponseTime);
         statisticReport.setMinResponseTime(this.minResponseTime);
@@ -57,8 +62,8 @@ public class StatisticServiceImpl implements com.afkl.cases.df.service.Statistic
 
 
     private void calculate(){
-        this.minResponseTime = Collections.min(statisticModels, new compRequestCompletionTime()).getRequestCompletionTime();
-        this.maxResponseTime = Collections.max(statisticModels, new compRequestCompletionTime()).getRequestCompletionTime();
+        this.minResponseTime = Collections.max(statisticModels, new compRequestCompletionTime()).getRequestCompletionTime();
+        this.maxResponseTime = Collections.min(statisticModels, new compRequestCompletionTime()).getRequestCompletionTime();
         this.avgResponseTime = this.calculateAverage(this.statisticModels);
     }
 
@@ -76,7 +81,7 @@ public class StatisticServiceImpl implements com.afkl.cases.df.service.Statistic
 
     public class compRequestCompletionTime implements Comparator<StatisticModel> {
         public int compare(StatisticModel a, StatisticModel b) {
-            if (a.getRequestCompletionTime() < b.getRequestCompletionTime())
+            if (a.getRequestCompletionTime() > b.getRequestCompletionTime())
                 return -1; // highest value first
             if (a.getRequestCompletionTime() == b.getRequestCompletionTime())
                 return 0;
