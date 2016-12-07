@@ -4,10 +4,10 @@
 <div class="container" style="margin-top: -100px;">
 <div class="row" class="selectionRow">
     <div class="col-lg-6">
-        <as-search-box [label]="'From'"  (onAirportSelected)="selectOrigen($event[0])"></as-search-box>
+        <as-search-box [title]="'From'" [label]="'Select departure'"  (onAirportSelected)="selectOrigen($event[0])"></as-search-box>
     </div>
     <div class="col-lg-6">
-        <as-search-box [label]="'To'" (onAirportSelected)="selectDesitnation($event[0])"></as-search-box>
+        <as-search-box [title]="'To'" [label]="'Select destination'" (onAirportSelected)="selectDesitnation($event[0])"></as-search-box>
     </div>
 </div>
 <div class="row">

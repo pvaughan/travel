@@ -14,7 +14,9 @@ import { Observable, Subject } from 'rxjs/Rx';
 })
 export class SearchBoxComponent implements OnInit {
 
+    @Input() public title: string;
     @Input() public label: string;
+
     @Output() public onAirportSelected: EventEmitter<any> = new EventEmitter();
 
     private airPorts: Observable<AirPortModel[]>;
@@ -51,12 +53,12 @@ export class SearchBoxComponent implements OnInit {
         }
     }
 
-    reSelectOrigen(): void  {
+    reSelectOrigen(): void {
         this.origenSelected = false;
         this.origenAiportSearch = '';
     }
 
-    selectOrigen(origen: AirPortModel): void  {
+    selectOrigen(origen: AirPortModel): void {
         this.origenSelected = true;
         this.origen = origen;
         this.searchTerms.next(null);
